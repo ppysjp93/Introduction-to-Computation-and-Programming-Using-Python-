@@ -1,0 +1,23 @@
+Introduction To Python
+Numerical Progams 
+FunctionsScoping Abstraction
+Structured Types, Mutability, Higer Order Functions
+Testing and Debugging 
+Exceptions and Assertions
+Classes and Object Oriented Programming 
+Algorithmic Complexity
+Algorithms and Data Structures 
+Plotting 
+Knapsack and Graph Optimization Problems 
+Dynamic Programming
+Random Walks and More Data Visualisation
+Stochastic Programs and Probability Distributions
+Monte Carlo Simulation
+Sampling and Confidence Intervals 
+Understanding Experimental Data
+Randomized Trials and Hypothesis Checking 
+Conditional Probability and Bayesian Statistics 
+Lies, Damned Lies and Statistics 
+A Machine Learning Starter
+Clustering
+Classification Methods 
