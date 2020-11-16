@@ -34,11 +34,56 @@ Though python isn't statically typed it is particularly useful as it is relative
 simple syntactically and it has a large number of libraries that interface with 
 Python which extend its functionailty.""")
 
-print("""
-Basic Elements of Python""")
+print("\nBASIC ELEMENTS OF PYTHON")
 
 print('Yankees rule!')
 print('But not in Boston!')
 print('Yankees rule,', 'but not in Boston!')
 
 print("\nOBJECTS, EXPRESSIONS AND NUMERICAL TYPES")
+
+print("""
+The next bit is really good. It says to think of Types as either scalar or 
+non-scalar. As in scalar types are atomic i.e. indivisible whilst non-scalar
+object like string do have an internal structure.
+Python in particular has 4 sclar objects: int, float, bool and None""")
+
+print("""
+The book goes on to explain basic programming arithmetic which I know.""")
+
+print("\nVARIABLES AND ASSIGNMENT")
+
+print("""
+In python it is critical to remember that a variable is just a name and nothing
+more. An assignment statement associates the left of the = symbol with the object 
+denoted by the expression to the right fo the =.""")
+
+print("""
+Variables cannot start with numbers. There is also a list of reserved words which
+have a special meaning so they cannot be used as names for variables, the list 
+is as follows:
+    and, as, assert,, break, class, continue, def, del, elif, else, except, False,
+    finally, for, from, global, if, import, in, is, lambda, nonlocal, None, not,
+    or, pass, raise, return, True, try, while, with, yield""")
+
+print("""
+Using comments is a good way to improve readability (this is for programms you 
+will be making yourself. Comments should be used sparingly in commercial 
+enviroments because the code itself should be descriptive enough.) Below is an 
+example of commenting anyways: """)
+
+side = 1 # length of sides of a unit square
+radius = 1 # radius of a unit circle
+pi = 3.14
+# subtract area of unit circule from area of unit square
+areaC = pi*radius**2
+areaS = side*side
+difference = areaS - areaC
+
+print("""
+Python allows multiple assigments to be performed. 
+x, y = 2, 3 will bind x to 2 and y to 3 """)
+
+print("""
+It then goes on to explain using an IDE rather than typing code directly into 
+the shell (which is what I like to do most because vim) """)
