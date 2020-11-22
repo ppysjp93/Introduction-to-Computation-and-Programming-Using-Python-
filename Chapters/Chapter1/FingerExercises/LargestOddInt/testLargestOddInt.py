@@ -1,23 +1,122 @@
 import unittest
 
-from LargestOddIntSolution import IsOdd
+from LargestOddIntSolution import IsOdd, LargestOf2, LargestOf3, LargestOdd
 from fractions import Fraction
 
-class TestSum(unittest.TestCase):
-    def test_IsOdd(self):
-        """
-        Test IsOdd returns True if an odd integer is passed as its argument
-        and return False if an even integer is passed as its argument. 
-        If anything but an integer is passed an InvalidArgumentException is 
-        called.
-        """
+class TestLargestOddInt(unittest.TestCase):
+    def test_IsOdd_EvenInteger(self):
 
         integer = 4 
         result = IsOdd(integer)
 
         # Test a list of whole numbers
+        self.assertEqual(result,False)
+
+    def test_IsOdd_OddInteger(self):
+
+        integer = 3 
+        result = IsOdd(integer)
+
+        # Test a list of whole numbers
         self.assertEqual(result,True)
         
+    def test_IsOdd_NonInteger(self):                                               
+        with self.assertRaises(TypeError): 
+            IsOdd("hello")
+
+    def test_LargestOf2_a_GreaterThan_b(self):
+        a = 2 
+        b = 1 
+        result = LargestOf2(a, b)
+        self.assertEqual(result, a)
+
+    def test_LargestOf2_a_LessThan_b(self):
+        a = 1 
+        b = 2 
+        result = LargestOf2(a, b)
+        self.assertEqual(result, b)
+
+    def test_LargestOf3_a_gt_b_and_gt_c(self):
+        a = 3 
+        b = 2 
+        c = 1
+        result = LargestOf3(a, b, c)
+        self.assertEqual(result, a)
+
+    def test_LargestOf3_a_gt_b_but_lt_c(self):
+        a = 2 
+        b = 1 
+        c = 3
+        result = LargestOf3(a, b, c)
+        self.assertEqual(result, c)
+
+    def test_LargestOf3_a_lt_b_but_gt_c(self):
+        a = 2 
+        b = 3 
+        c = 1
+        result = LargestOf3(a, b, c)
+        self.assertEqual(result, b)
+
+    def test_LargestOf3_a_lt_b_and_lt_c(self):
+        a = 1 
+        b = 2 
+        c = 3
+        result = LargestOf3(a, b, c)
+        self.assertEqual(result, c)
+
+    def test_LargestOdda_b_c_AllOdd(self):
+        a = 1 
+        b = 3 
+        c = 5
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, c)
+    
+    def test_LargestOdd_a_b(self):
+        a = 1 
+        b = 7 
+        c = 4
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, b)
+
+    def test_LargestOdd_a_c(self):
+        a = 1 
+        b = 4 
+        c = 7
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, c)
+
+    def test_LargestOdd_b_c(self):
+        a = 4 
+        b = 1 
+        c = 7
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, c)
+
+    def test_LargestOdd_a(self):
+        a = 1 
+        b = 4 
+        c = 8
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, a)
+
+    def test_LargestOdd_b(self):
+        a = 4 
+        b = 1 
+        c = 8
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, b)
+
+    def test_LargestOdd_c(self):
+        a = 4 
+        b = 8 
+        c = 1
+        result = LargestOdd(a, b, c)
+        self.assertEqual(result, c)
+
+    def test_LargestOdd_EvenArgs(self):
+        with self.assertRaises(ArithmeticError): 
+            LargestOdd(2,4,6)
+
 # This is known as a command line entry point
 if __name__ == '__main__':
     unittest.main()
