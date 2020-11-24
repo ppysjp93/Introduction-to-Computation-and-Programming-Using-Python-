@@ -9,10 +9,18 @@ class TestIsInSolution(unittest.TestCase):
         """
         string1 = "Hello"
         string2 = "Hello World!" 
-
+        result = IsIn(string1,string2)
         # Test a list of whole numbers
-        self.assertEqual(IsIn(string1,string2), True)
+        self.assertEqual(result, True)
         
+        """
+        Test string1 is in string2
+        """
+        string2 = "Hello"
+        string1 = "Hello World!" 
+        result = IsIn(string1,string2)
+        # Test a list of whole numbers
+        self.assertEqual(result, True)
         
 
 
