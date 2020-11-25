@@ -14,14 +14,17 @@ def maxVal(x, y):
         return y
     
 print("""
-def is a reserved word that tell Python that a function is about to be defined.
-The function nmae (maxVal in this example) is simply a name that is sued to
-refer to the function. The sequence of names within the parentheses follwing the
+def is a reserved word that tells Python that a function is about to be defined.
+The function name (maxVal in this example) is simply a name that is used to
+refer to the function. The sequence of names within the parentheses following the
 function name (x, y in this example) are 'formal parameters' of the function.
-When the function is sued, the formal parameters are bound to the actual
+When the function is used, the formal parameters are bound to the actual
 parameters (often referred to as arguments) of the function invocation (also
-referred to teh as a function call). For example, the invocation
+referred to the as a function call). For example, the invocation
 maxval(3, 4)\n""")
+
+print("""
+Key Messagae: formal parameters are bound to arguments""")
 
 print("\nmaxVal = ", str(maxVal(3, 4)))
 
@@ -43,8 +46,8 @@ together to get 12.""")
 print("""
 The 'point of execution' is the next instruction to be executed after the 'point
 of invocation' to the first statement in the body of the function. The code of
-the function is then executed until either a retrun statement is encountered, in
-which case whatever is follwoing the return statement becomes the value of the
+the function is then executed until either a return statement is encountered, in
+which case whatever is following the return statement becomes the value of the
 function invocation or there are no more statement to execute in which case the
 value 'None' is returned. If no expression follows the return statement the
 value of the invocation is None. The 'value of the invocation' is the returned
@@ -56,9 +59,9 @@ line by line and then jump again, so we start to get a more complex movement of
 this pointer.""")
 
 print("""
-Parameters provide something call 'lambda abstraction', allowing programmers to
+Parameters provide something called 'lambda abstraction', allowing programmers to
 write code that manipulates not specific objects, but instead whatever objects
-the called of hte function chooses to use as actual parameters. A 'lambda
+the called of the function chooses to use as actual parameters. A 'lambda
 abstraction' is like a non-'type'racist abstraction. """)
 
 
