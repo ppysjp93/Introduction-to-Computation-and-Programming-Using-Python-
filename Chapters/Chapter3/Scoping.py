@@ -114,22 +114,32 @@ the value of x is now 4. Next h() is called. This introduces another stack frame
 Something weird happens here because in this function  we have a variable z being 
 assigned to the 'variable' x eventhough x hasn't been previuosly assigned a 
 'value'. This is where we start to get to a fundamental understanding of Python.
-What python does in this case is it looks through the current stack frame and
-sees if there is a variable x which has been assigned a value. It then will set
-the variable to the value further down the stack frame if it exists otherwise
-there will be an error with the Python interpreter. So, having looked through
-the stack frame z now points at the value 4, and the print statement inside the
-stack frame for h is executed and the stack frame for h is popped off the top of
-the stack. Next a new stack frame is added for the function of g(). In this case
-the local variable x is printed with the assigned local value 'abc' and the 
-stack frame associated with g() is popped from the stack. Back in the scope of f
-the local variable x still points at the value for x which was incremented
-earlier to be 4, so that value is then printed. Now the stack frame for f is
-popped off the stack and z is assigned to g, ( z = g ) Next, the value of x is
-printed for the local value of x which is 3 (global value of x is 3). Now
-another bit of Python understanding comes in here, z = g, and so is just a
-function, it has no value which is why we get the strange output. It also
-explains the next bit of code because z() means we are doing g() and we know the
-output of g() is " x = 'abc' " """)
+What python does in this case is it looks through the current stack frames and
+sees if there is a variable x which has been assigned a value further down. 
+So z is assigned to the value of x which is next nearest but further down the stack
+frame, otherwise there will be an error with the Python interpreter.
+So, having looked through the stack frame z now points at the value 4, and the
+print statement inside the stack frame for h is executed and the stack frame for 
+h is popped off the top of the stack. Next a new stack frame is added for the 
+function of g(). In this case the local variable x is printed with the assigned 
+local value 'abc' and the stack frame associated with g() is popped from the stack. 
+Back in the scope of f the local variable x still points at the value for x 
+which was incremented earlier to be 4, so that value is then printed. 
+Now the stack frame for f is popped off the stack and z is assigned to g, ( z = g ) 
+Next, the value of x is printed for the local value of x which is 3 (global 
+value of x is 3). Now another bit of Python understanding comes in here, z = g,
+and so is just a function, it has no value which is why we get the strange 
+output. It also explains the next bit of code because z() means we are doing g()
+and we know the output of g() is " x = 'abc' " """)
 
-
+print("""
+So this is mostly all there is to scoping apart from one final caviat. If an 
+undefined variable in a scope is then set to a value later on in that scope 
+that undefined variable becomes a local variable and an UnboundLocalError will
+happen. So in the above example this could occur in h() if it were to instead 
+become something like: 
+    def h():
+        z = x
+        print('z =', z)
+        z = 2
+Python doesn't know how to interpret this so an error is called instead.""")
