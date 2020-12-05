@@ -96,3 +96,64 @@ def testFib(n):
 testFib(5)
 
 print("\nPALINDROMES")
+
+print("""
+Below is the function isPalindrome, it contains two helper functions. These are
+of no interest to the client but are a useful way of breaking up a problem into
+parts. The helper function toChars conerts all letters to lowercase and removes
+non-letters. It starts by using a built-in method oon strings to generate a
+string that is idenctical to s except that all uppercase letters have been
+converted to lowercase. This is an example of method invocation which will be
+discussed further when we get to classes. 
+The next helper function isPal does the real work. The two base cases are
+strings of length zero or one. This means that the recursive part of the
+implementation is reached only on strings of length two or more. The conjunction
+in the else clause is evaluated from left to right. The code first checks
+whether the first and last characters are the same, and if they are goes on to
+check whether the string minus those two characters is a palindrome. That the
+second conjunct is not evaulated unless the first conjunct evaluates to True is
+semantically irrelevant in this example. However, later in the book we will see
+examples where this kind of short-circuit evauluation of Booelan expressiosn is
+semantically relevant. """)
+
+def isPalindrom(s):
+    """Assumes s is a str
+       Retruns True if letters in s form a palindrom; False
+       otherwise. Non-letters and capitalization are ignored."""
+
+    def toChars(s):
+        s = s.lower()
+        letters = ''
+        for c in s:
+            if c in 'abcdefghijklmnopqrstuvwxyz':
+                letters = letters + c
+        return letters
+
+    def isPal(s):
+        if len(s) <= 1:
+            return True
+        else:
+            return s[0] == s[-1] and isPal(s[1:-1])
+
+    return isPal(toChars(s))
+            
+print("""
+This is a really nice example of how slicing is used in a string data structure
+recursively. I think that is the key, is the input to the recursive function 
+should just be a smaller version of the same problem.""")
+
+print("\nIs racecar a Palindrome? ")
+racecar = isPalindrome('Racecar')
+
+
+print("""
+isPalindrome is an example of using the divide and conquer method to find a
+solution to a problem. To solve the problem you break the original version of
+the problem into a simpler version of the same problem. In this case checking
+whether a shorter string is a Palindrome and and thing we know how to do which
+is compare two single characters. We then combine the solutions with the and
+keyword.
+
+Interesting fact when two Boolean-valued expressions are oconnected by "and",
+each expression is called a conjunct. If they are connected by "or" they are
+called disjuncts.""")
