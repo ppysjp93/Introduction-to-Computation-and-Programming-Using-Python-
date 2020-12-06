@@ -1,3 +1,5 @@
+import Chapters.Chapter4.Recursion as Rec
+
 print("################################################################################") 
 print("""
 FUNCTIONS AS OBJECTS\n""")
@@ -11,7 +13,16 @@ they can appear in expressions, e.e., as the right-hand side of an asignemnt
 statement or as an arguemtn to a function; they can be elements of lists; etc.
 Using functions as arguements allows a style of coding called
 'higher-order programming'. It can be particularly convenient in conjunction
-with lists, as showin Figure 5.5.""")
+with lists, as showin Figure 5.5\n""")
+
+print('''
+def applyToEach(L,f):
+    """
+    Assumes L is  a list, f a function
+    Mutates L by replacing each element, e, of L by f(e)
+    """
+    for i in range(len(L)):
+        L[i] = f(L[i])\n''')
 
 def applyToEach(L,f):
     """
@@ -23,15 +34,16 @@ def applyToEach(L,f):
 
 L = [1, -2, 3.33]
 print('L =', L)
-print('Apply abs to each element of L.')
+print('\nApply abs to each element of L.')
 applyToEach(L, abs)
 print('L =', L)
-print('Apply int to each element of L.')
+print('\nApply int to each element of L.')
 applyToEach(L, int)
 print('L =', L)
-print('Apply factorial to each element of L.')
-applyToEach(L, factR)
+print('\nApply factorial to each element of L.')
+applyToEach(L, Rec.factR)
 print('L =', L)
-print('Apply Fibonacci to each element of L.')
-applyToEach(L, fib)
+print('\nApply Fibonacci to each element of L.')
+applyToEach(L,Rec.fib)
+print('L =', L)
 

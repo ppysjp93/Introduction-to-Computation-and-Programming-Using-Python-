@@ -14,26 +14,45 @@ defined below is the iterative form of the factorial function followed by its
 recursive sister.""")
 
 print('''
-def FactR(n):
+def FactI(n):
     """Assumes n an int > 0
         Returns n!"""
-    if n == 1:
-        return n
-    else:
-        return n*factR(n-1)''')
+    result = 1
+    while n > 1:
+        result = result * n
+        n -= 1
+    return result
+        ''')
+
+def FactI(n):
+    """Assumes n an int > 0
+        Returns n!"""
+    result = 1
+    while n > 1:
+        result = result * n
+        n -= 1
+    return result
 
 print("""
 You can see that it the iterative form is simple enough but not the most
 intuitve to read. Now look at its recursive brother: """)
 
 print('''
-def FactR(n):
+def factR(n):
     """Assumes n an int > 0
         Returns n!"""
     if n == 1:
         return 1
     else:
         return n*FactR(n-1)''')
+
+def factR(n):
+    """Assumes n an int > 0
+        Returns n!"""
+    if n == 1:
+        return 1
+    else:
+        return n*factR(n-1)
 
 print("\nFIBONACCI NUMBERS")
 
@@ -116,7 +135,7 @@ semantically irrelevant in this example. However, later in the book we will see
 examples where this kind of short-circuit evauluation of Booelan expressiosn is
 semantically relevant. """)
 
-def isPalindrom(s):
+def isPalindrome(s):
     """Assumes s is a str
        Retruns True if letters in s form a palindrom; False
        otherwise. Non-letters and capitalization are ignored."""
