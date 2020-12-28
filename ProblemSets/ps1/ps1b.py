@@ -9,13 +9,13 @@ Created on Thu Dec 24 15:04:23 2020
 # portion_saved = input("Enter the percent of your salary to save, as a decimal: ")
 # total_cost = input("Enter the cost of your dream home? ")
 
-initial_salary = 20000
-portion_saved = 0.2
-total_cost = 200000
-portion_down_payment = 0.15
+initial_salary = 150000
+portion_saved = 0.4453125
+total_cost = 1000000
+portion_down_payment = 0.25
 annual_savings_rate = 0.04
-semi_annual_rise = 0.02
-current_savings = 5000
+semi_annual_rise = 0.07
+current_savings = 0
 
 def Downpayment_Calculator(annual_salary, portion_saved,
                             total_cost, portion_down_payment,

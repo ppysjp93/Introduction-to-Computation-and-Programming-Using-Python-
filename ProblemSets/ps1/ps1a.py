@@ -20,6 +20,7 @@ number_of_months = 0
 current_savings = 0.0 
 diff = - 1.0 # place holder
 monthly_portion_saved = float(annual_salary)*float(portion_saved)/12
+
 while(diff < 0):
     current_savings += current_savings*r/12 + monthly_portion_saved
     number_of_months += 1
