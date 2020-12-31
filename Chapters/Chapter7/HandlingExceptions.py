@@ -38,3 +38,29 @@ the except block is skipped and then the final print statment is executed.
 If we encounter a ZeroDivision error, the rest of the try block is skipped 
 immediately, the except block is excecuted in its entirety and then the final
 print statment is executed. \n""")
+
+print("""
+Consider the following example:\n""")
+
+print("""
+val = int(input('Enter an integer: '))
+print('The square of the number you entered is', val**2)\n""")
+
+print("""
+If the user obligingly types a string that can be converted to an integer,
+eveything will be fine. But if a user enters a string with any characters that
+aren't numbers (a simple case would be "abc", then we get a ValueError exception
+and the print statement will never be reached. The following is what the
+programmer should have written.\n""")
+
+print("""
+while True:
+    val = input('Enter an integer: ')
+    try:
+        val = int(val)
+        print('The square of the number you entered is', val**2)
+        break #to exit the while loop
+    except ValueError:
+        print(val, 'is not an integer')\n""")
+
+  
