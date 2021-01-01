@@ -15,6 +15,9 @@ append a Person to a list, etc.
 
 import sys, os
 
+# These functions are temporary fixes that dont really work when you start
+# doing multiple levels of inheritance.
+
 # Disable
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
