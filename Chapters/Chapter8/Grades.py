@@ -47,3 +47,14 @@ class Grades(object):
             self.isSorted = True
         return self.students[:] #return a copy of list of students
        
+class GradesWithGenerator(Grades):
+
+    def getStudents(self):
+        """
+        Return the studetns in the grade book one at a time in alphabetical order
+        """
+        if not self.isSorted:
+            self.students.sort()
+            self.isSorted = True
+        for s in self.students:
+            yield s
