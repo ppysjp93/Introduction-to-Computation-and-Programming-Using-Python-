@@ -69,7 +69,7 @@ class TwoRate(Mortgage):
             self.payment = findPayment(self.outstanding[-1],
                                     self.rate,
                                     self.months - self.teaserMonths)
-            Mortage.makePayment(self)
+        Mortgage.makePayment(self)
 
 def compareMortgages(amt, years, fixedRate, pts, ptsRate, varRate1, varRate2,
         varMonths):
@@ -85,6 +85,11 @@ def compareMortgages(amt, years, fixedRate, pts, ptsRate, varRate1, varRate2,
             print(m)
             print(' Total payments = $' + str(int(m.getTotalPaid())))
         print()
+
 compareMortgages(amt=200000, years=30, fixedRate=0.07,
                 pts = 3.25, ptsRate=0.05, varRate1=0.045,
                 varRate2=0.095, varMonths=48)
+
+print('''
+You can see that the varRate2 = {0} has a brutal effect in the long term of the
+loan.\n'''.format(0.095))

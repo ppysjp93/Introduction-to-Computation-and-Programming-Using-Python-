@@ -91,3 +91,15 @@ mortgage as the concatenation of the two loans, each at a different interest rat
 more element that the number of payments that have been made. That's why the 
 method makepayment compares len(self.paid) to self.teaserMonths + 1.)\n''')
 
+
+print('''
+At first glance, the results look pretty conclusive. The variable-rate loan is a
+bad idea (for the borrower, not hte lender) adn the fixed rate loan with points
+costs the least. It's important to note, however, that toal cost is not the only
+metric by which mortgages should be judged. For example a borrower who expects
+to have a higher income in the future may be willing to pay more in the later
+years to lessen the burden of payments in the beginning.
+This suggests that rather than looking at a single number, we should look at
+payments over time. This in turn suggests that our program should be producing
+plots designed to show how the mortgage behaves over time. We will do this in a
+few Chapter 11. \n''')
