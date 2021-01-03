@@ -91,10 +91,19 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    word = str.lower(word)
+    component1 = 0 
+    for letter in word:
+       component1 += SCRABBLE_LETTER_VALUES[letter] 
 
-#
+    word_length = len(word)
+    component2 = 7*word_length - 3*(n - word_length)
+
+    if component2 > 1:
+        return component1*component2
+    else:
+        return component1
+ 
 # Make sure you understand how this function works and what it does!
 #
 def display_hand(hand):
