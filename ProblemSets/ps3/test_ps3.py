@@ -13,6 +13,11 @@ def test_get_word_score():
     words = {("", 7):0, ("it", 7):2, ("was", 7):54, ("weed", 6):176,
              ("scored", 7):351, ("WaYbILl", 7):735, ("Outgnaw", 7):539,
              ("fork", 7):209, ("FORK", 4):308}
+
+    myTests = {('myword', 10):450, ('hello', 8):208}
+
+    word.update(myTests)
+
     for (word, n) in words.keys():
         score = get_word_score(word, n)
         if score != words[(word, n)]:
