@@ -176,10 +176,20 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
+    new_hand = hand.copy()
+    word = str.lower(word)
 
-    pass  # TO DO... Remove this line when you implement this function
+    for i in word:
+        if i in new_hand:
+            new_hand[i] -= 1
 
-#
+    for key, val in dict(new_hand).items(): # USEFUL CODE
+        if val <= 0:                        # Tidies up dictionary based on condition
+            del new_hand[key]
+
+    return new_hand
+
+
 # Problem #3: Test word validity
 #
 def is_valid_word(word, hand, word_list):
@@ -193,8 +203,24 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
+    word_dict = {}
+    for letter in word:
+        letter = str.lower(letter)
+        if letter not in word_dict:
+            word_dict[letter] = 1
+        else:
+            word_dict[letter] += 1    
+        
+    valid_number_letters = True
 
-    pass  # TO DO... Remove this line when you implement this function
+    for key in word_dict:
+        if key not in hand or hand[key] < word_dict[key]:
+            valid_number_letters = False
+
+    if word not in word_list and not valid_number_letters:
+        return False
+    else:
+        return True
 
 #
 # Problem #5: Playing a hand

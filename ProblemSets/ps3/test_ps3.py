@@ -16,7 +16,7 @@ def test_get_word_score():
 
     myTests = {('myword', 10):450, ('hello', 8):208}
 
-    word.update(myTests)
+    words.update(myTests)
 
     for (word, n) in words.keys():
         score = get_word_score(word, n)
