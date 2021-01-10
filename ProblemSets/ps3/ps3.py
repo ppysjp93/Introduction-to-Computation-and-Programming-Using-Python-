@@ -16,7 +16,7 @@ CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
 
 SCRABBLE_LETTER_VALUES = {
-    'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
+        'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10, '*': 0
 }
 
 # -----------------------------------
@@ -106,7 +106,7 @@ def get_word_score(word, n):
  
 # Make sure you understand how this function works and what it does!
 #
-def display_hand(hand):
+def uisplay_hand(hand):
     """
     Displays the letters currently in the hand.
 
@@ -143,7 +143,8 @@ def deal_hand(n):
     """
     
     hand={}
-    num_vowels = int(math.ceil(n / 3))
+    num_vowels = int(math.ceil(n / 3)) - 1
+    #num_vowels = int(math.ceil(n / 3)) 
 
     for i in range(num_vowels):
         x = random.choice(VOWELS)
@@ -152,6 +153,8 @@ def deal_hand(n):
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
         hand[x] = hand.get(x, 0) + 1
+
+    hand['*'] = 1
     
     return hand
 
@@ -204,23 +207,38 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
     word_dict = {}
+    word = str.lower(word)
+
     for letter in word:
-        letter = str.lower(letter)
         if letter not in word_dict:
             word_dict[letter] = 1
         else:
             word_dict[letter] += 1    
         
-    valid_number_letters = True
+    valid_number_letters = True # Flag 1
 
     for key in word_dict:
-        if key not in hand or hand[key] < word_dict[key]:
+        if key not in hand:
+            return False
+        elif hand[key] < word_dict[key]:
             valid_number_letters = False
 
-    if word not in word_list and not valid_number_letters:
-        return False
+    wildcard_position = word.find('*')
+    word_in_word_list = False # Flag 2
+    no_wildcard = wildcard_position == -1
+
+    if no_wildcard:
+        word_in_word_list = word in word_list
     else:
+        for vowel in VOWELS:
+            test_word = word[:wildcard_position] + vowel + word[wildcard_position+1:]
+            if test_word in word_list:
+                word_in_word_list = True
+
+    if word_in_word_list and valid_number_letters:
         return True
+    else:
+        return False
 
 #
 # Problem #5: Playing a hand
@@ -232,8 +250,11 @@ def calculate_handlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    handlen = 0      
+    for key in hand:
+        handlen += hand[key]
+    return handlen
+
 
 def play_hand(hand, word_list):
 
@@ -265,7 +286,33 @@ def play_hand(hand, word_list):
       returns: the total score for the hand
       
     """
+    handlen = -1
+    total_score = 0
     
+    while handlen != 0:
+        display_hand(hand)
+        handlen = calculate_handlen(hand)
+        word = input('Enter a word, or "!!" to indicate that you are finished: ')
+        end_of_game = word == '!!'
+
+        if end_of_game:
+            break
+
+        hand = update_hand(hand, word)
+        
+        if not is_valid_word(word, hand, word_list): 
+            print('That is not a valid word. Please choose another word.')
+            continue
+
+        word_score = get_word_score(word, handlen)
+        total_score += word_score
+        
+        print('"{0}" earned {1} points. Total score: {2} points'.format(word, \
+                word_score, total_score))
+         
+    print('Ran out of letters. Total score: {0} points'.format(total_score))
+        
+
     # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
     # Keep track of the total score
     

@@ -41,7 +41,21 @@ def update_hand(hand, word):
 
     return new_hand
 
-def is_valid_word(word, hand, word_list):
+def get_word_score(word, n):
+    word = str.lower(word)
+    component1 = 0 
+    for letter in word:
+       component1 += SCRABBLE_LETTER_VALUES[letter] 
+
+    word_length = len(word)
+    component2 = 7*word_length - 3*(n - word_length)
+
+    if component2 > 1:
+        return component1*component2
+    else:
+        return component1
+
+ def is_valid_word(word, hand, word_list):
     word_dict = {}
     for letter in word:
         letter = str.lower(letter)
@@ -53,7 +67,9 @@ def is_valid_word(word, hand, word_list):
     valid_number_letters = True
 
     for key in word_dict:
-        if key not in hand or hand[key] < word_dict[key]:
+        if key not in hand:
+            return False
+        elif hand[key] < word_dict[key]:
             valid_number_letters = False
 
     if word not in word_list and not valid_number_letters:
@@ -61,3 +77,6 @@ def is_valid_word(word, hand, word_list):
     else:
         return True
 
+
+
+hand = {"c" : 1, "o" : 1, "w" : 1, "s" : 1 , "*" : 1, "z" : 1}
