@@ -1,4 +1,4 @@
-# 6.0001 Problem Set 3
+# 8.0001 Problem Set 3
 #
 # The 6.0001 Word Game
 # Created by: Kevin Luu <luuk> and Jenna Wiens <jwiens>
@@ -106,7 +106,7 @@ def get_word_score(word, n):
  
 # Make sure you understand how this function works and what it does!
 #
-def uisplay_hand(hand):
+def display_hand(hand):
     """
     Displays the letters currently in the hand.
 
@@ -122,12 +122,12 @@ def uisplay_hand(hand):
     for letter in hand.keys():
         for j in range(hand[letter]):
              print(letter, end=' ')      # print all on the same line
-    print()                              # print an empty line
-
+    print()
 #
 # Make sure you understand how this function works and what it does!
 # You will need to modify this for Problem #4.
 #
+
 def deal_hand(n):
     """
     Returns a random hand containing n lowercase letters.
@@ -286,31 +286,38 @@ def play_hand(hand, word_list):
       returns: the total score for the hand
       
     """
-    handlen = -1
+    handlen = calculate_handlen(hand)
     total_score = 0
-    
+
     while handlen != 0:
+
+        print('Current Hand: ', end=' ')
         display_hand(hand)
-        handlen = calculate_handlen(hand)
         word = input('Enter a word, or "!!" to indicate that you are finished: ')
-        end_of_game = word == '!!'
+        end_of_game = word == '!!' # Flag
 
         if end_of_game:
             break
 
-        hand = update_hand(hand, word)
-        
         if not is_valid_word(word, hand, word_list): 
+            hand = update_hand(hand, word)
+            handlen = calculate_handlen(hand)
             print('That is not a valid word. Please choose another word.')
             continue
 
         word_score = get_word_score(word, handlen)
         total_score += word_score
+
+        hand = update_hand(hand, word)
+        handlen = calculate_handlen(hand)
         
         print('"{0}" earned {1} points. Total score: {2} points'.format(word, \
                 word_score, total_score))
          
-    print('Ran out of letters. Total score: {0} points'.format(total_score))
+    if end_of_game:
+        print('Total score: {0} points'.format(total_score))
+    else:
+        print('Ran out of letters. Total score: {0} points'.format(total_score))
         
 
     # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
