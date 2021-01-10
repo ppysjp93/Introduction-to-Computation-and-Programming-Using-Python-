@@ -13,6 +13,8 @@ import string
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
+ALPHABET = VOWELS + CONSONANTS
+
 HAND_SIZE = 7
 
 SCRABBLE_LETTER_VALUES = {
@@ -143,18 +145,25 @@ def deal_hand(n):
     """
     
     hand={}
-    num_vowels = int(math.ceil(n / 3)) - 1
-    #num_vowels = int(math.ceil(n / 3)) 
+    num_vowels = int(math.ceil(n / 3))
 
     for i in range(num_vowels):
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
+
     
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
         hand[x] = hand.get(x, 0) + 1
 
-    hand['*'] = 1
+    val = -1
+
+    # while loop is there to ensur only one wildcarde
+    while val != 1:
+        random_key = random.choice(tuple(hand.keys()))
+        val = hand[random_key]    
+
+    hand['*'] = hand.pop(random_key) 
     
     return hand
 
@@ -206,15 +215,9 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
-    word_dict = {}
     word = str.lower(word)
+    word_dict = get_frequency_dict(word)    
 
-    for letter in word:
-        if letter not in word_dict:
-            word_dict[letter] = 1
-        else:
-            word_dict[letter] += 1    
-        
     valid_number_letters = True # Flag 1
 
     for key in word_dict:
@@ -291,7 +294,7 @@ def play_hand(hand, word_list):
 
     while handlen != 0:
 
-        print('Current Hand: ', end=' ')
+        print('\nCurrent Hand: ', end=' ')
         display_hand(hand)
         word = input('Enter a word, or "!!" to indicate that you are finished: ')
         end_of_game = word == '!!' # Flag
@@ -311,14 +314,16 @@ def play_hand(hand, word_list):
         hand = update_hand(hand, word)
         handlen = calculate_handlen(hand)
         
-        print('"{0}" earned {1} points. Total score: {2} points'.format(word, \
+        print('"{0}" earned {1} points. Total: {2} points'.format(word, \
                 word_score, total_score))
          
     if end_of_game:
         print('Total score: {0} points'.format(total_score))
     else:
-        print('Ran out of letters. Total score: {0} points'.format(total_score))
-        
+        print('\nRan out of letters. Total score: {0} points'.format(total_score))
+
+    return total_score   
+
 
     # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
     # Keep track of the total score
@@ -386,8 +391,19 @@ def substitute_hand(hand, letter):
     returns: dictionary (string -> int)
     """
     
-    pass  # TO DO... Remove this line when you implement this function
-       
+    set_hand_keys = set(tuple(hand.keys()))
+
+    if letter in set_hand_keys:
+
+        set_alpha = set(ALPHABET) # Technically constant, start of script
+        alpha_hand_keys = set_alpha - set_hand_keys
+
+        new_letter = random.choice(tuple(alpha_hand_keys))
+        hand[new_letter] = hand.pop(letter)
+
+    return hand
+
+      
     
 def play_game(word_list):
     """
@@ -420,7 +436,7 @@ def play_game(word_list):
     word_list: list of lowercase strings
     """
     
-    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
+    #print("play_game not implemented.") # TO DO... Remove this line when you implement this function
     
 
 
