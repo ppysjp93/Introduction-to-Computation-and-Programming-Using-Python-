@@ -4,7 +4,7 @@ BLACK BOX TESTING\n""")
 print("################################################################################") 
 
 print("""
-Black-Box Testing allos testers and implementers to be drawn from separte
+Black-Box Testing allows testers and implementers to be drawn from separate
 populations. Commericial Software is usually developed with quality assurance
 groups who work largely independently of development groups. This independence
 means that the code can be tested more rigourously. For example an implementer
@@ -24,7 +24,7 @@ def sqrt(x, epsilon):
     x >= 0
     epsilon >= 0
     espilon > 0
-    Returns reult such that
+    Returns result such that
     x - epsilon <= result*result <= x + espilon
     """
 
@@ -33,7 +33,7 @@ The BlackBox specification seems to only have 2 paths that need to be tested,
 however it is clear that this isn't sufficient. It probably makes sense
 especially when dealing with numbers to make sure that you test values along the
 lines of the 7 subsets we looked at earlier.
-It is importatnt to look at very small and very large alues as well as typical
+It is importatnt to look at very small and very large values as well as typical
 values. There is a nice table on page 88 that outlines a good 'test-suite' for
 these values. Aliasing is a real threat so you must be aware of this as an issue
 as you can see in the following code.""")

@@ -5,11 +5,11 @@ print("#########################################################################
  
 print("""
 Testing is often thought of as occurring in two phases. One should always start
-with unit testing. During thsi phase testers construct and run tests desingned
+with unit testing. During this phase testers construct and run tests desingned
 to ascertain whether individual units of code work properly. This is then
 followed by 'integration testing' which is designed to ascertain wheter the
-program as a whole behaves as inteded. In practice, testers cycle through these
-two phases, sine failures during integration testing lead to making changes to
+program as a whole behaves as intended. In practice, testers cycle through these
+two phases, sign failures during integration testing lead to making changes to
 individual units.\n""")
 
 print("""
@@ -30,7 +30,7 @@ Most testing is highly automated. People use test drivers that autonomously:
 print("""
 During unit testing we often need to build 'stubs' as well as drivers. Drivers
 simulate parts of the program that use the unit being tested, whereass stubs
-simulate parts of the program used by the unit being testeded. Stubs are useful
+simulate parts of the program used by the unit being tested. Stubs are useful
 because they allow people to test untis that depend upon software or sometimes
 even hardware that does not yet exist. This allows team of programmers to
 simultaneously develop and test multiple parts of a system. 
@@ -40,13 +40,14 @@ Ideally a stub should:
     * Modify the arguments and global variables in a manner consistent with the
         specification, and 
 Most testing is highly automated. People use test drivers that autonomously:
-    * Set up theenvironment needed to invoke the unit to be tested,
+    * Set up the environment needed to invoke the unit to be tested,
     * Invoke the program with a predefined set of generated inputs.
     * Save the results of these invocations,
     * Check the acceptability of the reuslts of the tests, and
     * Prepare an appropriate report. 
     * Return values consistent with the speciication.\n""")
 
+print('''
 Building adequate stubs is often a challenge. If the unit the stub is replacing
 is intended to perform some complex task, building a stub that performs actions
 consisten with the specification may be tantamout to writing the program that
@@ -58,6 +59,6 @@ One attraction of automating the testing process is that it facilitates
 regression testing. As programmers attempt ot debug a program, it is all to
 common to install a "fix" that breaks something that used to work. Whenever any
 change is made not matter how small, you should check that the program still
-passes all of the test that it used to pass.
+passes all of the test that it used to pass.\n''')
 
 

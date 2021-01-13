@@ -5,7 +5,7 @@ print("#########################################################################
 
 print("""
 Think of debugging as a search process, and each experiment as an attempt to
-reduce the size of teh search space. One method could be to design an experiemnt
+reduce the size of teh search space. One method could be to design an experiement
 that can be used to decide whether a specific region of code is responsible for
 a problem uncovered during integration testing. Another way to reduce the search
 space is to reduce the amount of test data needed to provoke a manifestation of
@@ -137,8 +137,8 @@ gets tough. Check for the following:
     * Passed arguments to a function in the wrong order,
     * Misspelled a name, e.g., typed a lowercase letter when you should have
         typed an uppercase one,
-    * Failed t oreinitialize a variable
-    * Tested that two flaoitng point values are equal instead of nearly equal
+    * Failed to reinitialize a variable
+    * Tested that two floaitng point values are equal instead of nearly equal
       (remember floating point arithmetic is not hte same as the arithmetic you
       learned in school)
     * Tested for value equality (e.g., compared two lists by writing the
