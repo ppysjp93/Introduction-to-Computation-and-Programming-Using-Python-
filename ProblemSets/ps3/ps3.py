@@ -294,8 +294,13 @@ def play_hand(hand, word_list):
 
     while handlen != 0:
 
-        print('\nCurrent Hand: ', end=' ')
-        display_hand(hand)
+#        print('\nCurrent Hand: ', end=' ')
+#        display_hand(hand)
+
+        # In the future I would encapsulate all of the substitute letter stuff
+        # into a function and put it here.
+        # So for the play_hand example file uncomment the above lines
+
         word = input('Enter a word, or "!!" to indicate that you are finished: ')
         end_of_game = word == '!!' # Flag
 
@@ -322,7 +327,7 @@ def play_hand(hand, word_list):
     else:
         print('\nRan out of letters. Total score: {0} points'.format(total_score))
 
-    return total_score   
+    return total_score  
 
 
     # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
@@ -405,6 +410,14 @@ def substitute_hand(hand, letter):
 
       
     
+def readVal(valType, requestMsg, errorMsg):
+    while True:
+        val = input(requestMsg + ' ')
+        try:
+            return(valType(val)) # convert string to val type before returning
+        except ValueError:
+            print(val, errorMsg)# exception may be needed here if none int is entered. 
+
 def play_game(word_list):
     """
     Allow the user to play a series of hands
@@ -436,8 +449,71 @@ def play_game(word_list):
     word_list: list of lowercase strings
     """
     
-    #print("play_game not implemented.") # TO DO... Remove this line when you implement this function
     
+    number_of_hands = readVal(int, 'Enter total number of hands: ', 'is not a integer')
+
+    hands = []
+    for i in range(number_of_hands):
+        hands.append(deal_hand(HAND_SIZE))
+
+    game_score = 0
+    i = 0
+    repeat_hand = False
+    sub_letter_bool = True
+    repeat_hand_bool = True
+    game_score_dict = {}
+
+    while i < len(hands):
+
+        hand = hands[i].copy()
+
+        print('Current Hand: ', end=' ')
+        display_hand(hands[i])
+
+
+        if sub_letter_bool:
+
+            substitute_letter = input('Would you like to substitute a letter? ')
+
+            while substitute_letter not in ['yes', 'no']:
+                print('Please enter "yes" or "no"')
+                substitute_letter = input('Would you like to substitute a letter? ')
+
+            if substitute_letter == 'yes':
+                letter = input('Which letter would you like to replace? ')
+                hand = substitute_hand(hand, letter)  
+                print('Current Hand: ', end=' ')
+                display_hand(hands[i])
+                sub_letter_bool = False      
+                 
+        hand_score = play_hand(hand, word_list)
+
+        if i in game_score_dict and hand_score > game_score_dict[i]: 
+            game_score_dict[i] = hand_score
+
+        else:
+            game_score_dict[i] = hand_score
+        
+
+
+        print('----------')
+
+        if repeat_hand_bool:
+            replay_hand = input('Would you like to replay the hand? ')
+
+            while replay_hand not in ['yes', 'no']:
+                print('Please enter "yes" or "no"')
+                replay_hand = input('Would you like to replay the hand? ')
+            
+            if replay_hand == 'yes':
+                i -= 1
+                repeat_hand_bool = False
+                sub_letter_bool = False     
+        i += 1
+       
+    print('Total score over all hands: ', sum(game_score_dict.values()))
+
+
 
 
 #
