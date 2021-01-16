@@ -92,14 +92,14 @@ def Is_Current_Savings_Within_100_Down_Payment(current_savings, down_payment, ep
 
 
 
-initial_salary = 15000
+initial_salary = 20000
 portion_saved_guess = 0.4411 # we want to find this value so that we get a current savings
                         # value that is as close to 250,000 as possible in this case
-total_cost = 1000000
-portion_down_payment = 0.25
+total_cost = 200000
+portion_down_payment = 0.15
 annual_savings_rate = 0.04
 semi_annual_rise = 0.07
-current_savings = 0
+current_savings = 5000
 number_of_months = 36
 
 print("Bisection Search 2")
@@ -110,13 +110,14 @@ low = 0
 high = 10000
 num_Guesses = 0
 down_payment = total_cost * portion_down_payment
+
 num_Guesses, portion_saved = Bisection_Search_2(down_payment, initial_savings, epsilon, num_Guesses, low, high)
 
 print("Number of Guesses: {0}".format(num_Guesses))
 print("Portion Saved: {0}".format(portion_saved))
 
 print("You can see that we can now work out exactly how much we need to save to \
-      be able to afford the downpayment within 36 months.")
+be able to afford the downpayment within 36 months.")
 
 #def Set_Goal(number_of_months, initial_salary):
 #    return portion_saved, num_Guesses
