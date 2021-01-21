@@ -23,6 +23,7 @@ def load_words(file_name):
     wordlist = []
     for line in inFile:
         wordlist.extend([word.lower() for word in line.split(' ')])
+    inFile.close()
     print("  ", len(wordlist), "words loaded.")
     return wordlist
 
@@ -58,6 +59,8 @@ def get_story_string():
 ### END HELPER CODE ###
 
 WORDLIST_FILENAME = 'words.txt'
+alphabet = string.ascii_letters
+
 
 class Message(object):
     def __init__(self, text):
@@ -70,15 +73,17 @@ class Message(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words('words.txt')
 
+        
     def get_message_text(self):
         '''
         Used to safely access self.message_text outside of the class
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text
 
     def get_valid_words(self):
         '''
@@ -87,8 +92,8 @@ class Message(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
-
+        return self.valid_words.copy()
+        
     def build_shift_dict(self, shift):
         '''
         Creates a dictionary that can be used to apply a cipher to a letter.
@@ -103,7 +108,11 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+        shift_dict = {}
+        for letter in alphabet:
+            shift_dict[letter] = letter
+        return shift_dict
+
 
     def apply_shift(self, shift):
         '''
