@@ -50,4 +50,6 @@ if __name__ == '__main__':
     print(get_permutations('a'))
     print(get_permutations('ab'))
     print(get_permutations('abc'))
+    print(get_permutations('aeiou'))
+    print(get_permutations('aeiou'.upper()))
     

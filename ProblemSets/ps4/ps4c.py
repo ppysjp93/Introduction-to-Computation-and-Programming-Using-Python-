@@ -4,6 +4,7 @@
 # Time Spent: x:xx
 
 import string
+import random
 from ps4a import get_permutations
 
 ### HELPER CODE ###
@@ -70,7 +71,8 @@ class SubMessage(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words('words.txt')
     
     def get_message_text(self):
         '''
@@ -78,7 +80,7 @@ class SubMessage(object):
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text
 
     def get_valid_words(self):
         '''
@@ -87,7 +89,7 @@ class SubMessage(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        return self.valid_words.copy()
                 
     def build_transpose_dict(self, vowels_permutation):
         '''
@@ -108,8 +110,21 @@ class SubMessage(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
+
+        # Prepare Vowels
+        vowels = VOWELS_LOWER + VOWELS_UPPER
+        vowels_permuted = vowels_permutation + vowels_permutation.upper()
+
+        vowels_dict =  dict(zip(vowels,vowels_permuted))
+            
+        # Prepare consonants
+        consonants = CONSONANTS_LOWER + CONSONANTS_UPPER
+        consonants_dict = dict(zip(consonants,consonants))
         
-        pass #delete this line and replace with your code here
+        # Build transpose dictionary
+        transpose_dict = {**vowels_dict, **consonants_dict}
+
+        return transpose_dict
     
     def apply_transpose(self, transpose_dict):
         '''
