@@ -133,8 +133,19 @@ class SubMessage(object):
         Returns: an encrypted version of the message text, based 
         on the dictionary
         '''
-        
-        pass #delete this line and replace with your code here
+        message_words = self.get_message_text().split(' ')
+        transpose_message_words = []
+        for word in message_words:
+            s = ''
+            for letter in word:
+                if letter not in string.ascii_letters:
+                    s += letter
+                else:
+                    transpose_letter = transpose_dict[letter]
+                    s += transpose_letter
+            transpose_message_words.append(s)
+        return ' '.join(transpose_message_words)
+  
         
 class EncryptedSubMessage(SubMessage):
     def __init__(self, text):
@@ -147,7 +158,7 @@ class EncryptedSubMessage(SubMessage):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        SubMessage.__init__(self, text)
 
     def decrypt_message(self):
         '''
@@ -167,8 +178,7 @@ class EncryptedSubMessage(SubMessage):
         
         Hint: use your function from Part 4A
         '''
-        pass #delete this line and replace with your code here
-    
+        return 0
 
 if __name__ == '__main__':
 
