@@ -252,7 +252,7 @@ class CiphertextMessage(Message):
            message_text_words = self.apply_shift(shift).split(' ') 
            word_count = 0
            for word in message_text_words:
-               if is_word(self.valid_words, word):
+               if is_word(self.get_valid_words(), word):
                    word_count += 1
            if max_word_count < word_count:
                max_word_count = word_count

@@ -178,7 +178,22 @@ class EncryptedSubMessage(SubMessage):
         
         Hint: use your function from Part 4A
         '''
-        return 0
+        max_word_count = 0
+        vowel_permutations = get_permutations('aeiou')
+        for vp in vowel_permutations:
+           transpose_dict = self.build_transpose_dict(vp)
+           message_text_words = self.apply_transpose(transpose_dict)
+           word_count = 0
+           for word in message_text_words.split(' '):
+               if is_word(self.get_valid_words(), word):
+                   word_count += 1
+           if max_word_count < word_count:
+               max_word_count = word_count
+               best_perm = vp
+
+        transpose_dict = self.build_transpose_dict(best_perm)
+
+        return self.apply_transpose(transpose_dict)
 
 if __name__ == '__main__':
 
@@ -189,6 +204,7 @@ if __name__ == '__main__':
     print("Original message:", message.get_message_text(), "Permutation:", permutation)
     print("Expected encryption:", "Hallu Wurld!")
     print("Actual encryption:", message.apply_transpose(enc_dict))
+
     enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
     print("Decrypted message:", enc_message.decrypt_message())
      
